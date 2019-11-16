@@ -1,20 +1,20 @@
 <?php
 
-namespace Staudenmeir\LaravelAdjacencyList\Eloquent;
+namespace Pahxa\LaravelAdjacencyList\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use RuntimeException;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Ancestors;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Descendants;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Siblings;
-use Staudenmeir\LaravelAdjacencyList\Query\Grammars\ExpressionGrammar;
-use Staudenmeir\LaravelAdjacencyList\Query\Grammars\MySqlGrammar;
-use Staudenmeir\LaravelAdjacencyList\Query\Grammars\PostgresGrammar;
-use Staudenmeir\LaravelAdjacencyList\Query\Grammars\SQLiteGrammar;
-use Staudenmeir\LaravelAdjacencyList\Query\Grammars\SqlServerGrammar;
-use Staudenmeir\LaravelCte\Eloquent\QueriesExpressions;
+use Pahxa\LaravelAdjacencyList\Eloquent\Relations\Ancestors;
+use Pahxa\LaravelAdjacencyList\Eloquent\Relations\Descendants;
+use Pahxa\LaravelAdjacencyList\Eloquent\Relations\Siblings;
+use Pahxa\LaravelAdjacencyList\Query\Grammars\ExpressionGrammar;
+use Pahxa\LaravelAdjacencyList\Query\Grammars\MySqlGrammar;
+use Pahxa\LaravelAdjacencyList\Query\Grammars\PostgresGrammar;
+use Pahxa\LaravelAdjacencyList\Query\Grammars\SQLiteGrammar;
+use Pahxa\LaravelAdjacencyList\Query\Grammars\SqlServerGrammar;
+use Pahxa\LaravelCte\Eloquent\QueriesExpressions;
 
 trait HasRecursiveRelationships
 {
@@ -79,7 +79,7 @@ trait HasRecursiveRelationships
     {
         return 'laravel_cte';
     }
-    
+
     /**
      * Get the model's ancestors.
      *
@@ -272,7 +272,7 @@ trait HasRecursiveRelationships
         $constraint = function (Builder $query) {
             $query->isRoot();
         };
-        
+
         return $query->withRelationshipExpression('desc', $constraint, 0);
     }
 

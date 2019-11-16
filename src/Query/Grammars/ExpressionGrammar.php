@@ -1,6 +1,6 @@
 <?php
 
-namespace Staudenmeir\LaravelAdjacencyList\Query\Grammars;
+namespace Pahxa\LaravelAdjacencyList\Query\Grammars;
 
 interface ExpressionGrammar
 {

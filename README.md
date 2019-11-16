@@ -20,7 +20,7 @@ Supports Laravel 5.5.29+.
  
 ## Installation
 
-    composer require staudenmeir/laravel-adjacency-list:"^1.0"
+    composer require paxha/laravel-adjacency-list
 
 ## Usage
 
@@ -48,7 +48,7 @@ Use the `HasRecursiveRelationships` trait in your model to work with recursive r
 ```php
 class User extends Model
 {
-    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+    use \Paxha\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 }
 ```
 
@@ -57,7 +57,7 @@ By default, the trait expects a parent key named `parent_id`. You can customize 
 ```php
 class User extends Model
 {
-    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+    use \Paxha\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
     
     public function getParentKeyName()
     {
@@ -156,7 +156,7 @@ You can customize the column name by overriding `getDepthName()`:
 ```php
 class User extends Model
 {
-    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+    use \Paxha\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
     public function getDepthName()
     {
@@ -192,7 +192,7 @@ You can customize the column name and the separator by overriding the respective
 ```php
 class User extends Model
 {
-    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+    use \Paxha\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
     public function getPathName()
     {
