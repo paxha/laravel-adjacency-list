@@ -4,6 +4,9 @@ namespace Paxha\LaravelAdjacencyList\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Grammar;
 use Illuminate\Support\Str;
 use RuntimeException;
 use Paxha\LaravelAdjacencyList\Eloquent\Relations\Ancestors;
@@ -83,7 +86,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's ancestors.
      *
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Ancestors
+     * @return Ancestors
      */
     public function ancestors()
     {
@@ -99,7 +102,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's ancestors and itself.
      *
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Ancestors
+     * @return Ancestors
      */
     public function ancestorsAndSelf()
     {
@@ -115,12 +118,12 @@ trait HasRecursiveRelationships
     /**
      * Instantiate a new Ancestors relationship.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param \Illuminate\Database\Eloquent\Model $parent
+     * @param Builder $query
+     * @param Model $parent
      * @param string $foreignKey
      * @param string $localKey
      * @param bool $andSelf
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Ancestors
+     * @return Ancestors
      */
     protected function newAncestors(Builder $query, Model $parent, $foreignKey, $localKey, $andSelf)
     {
@@ -130,7 +133,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's children.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function children()
     {
@@ -140,7 +143,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's children and itself.
      *
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Descendants
+     * @return Descendants
      */
     public function childrenAndSelf()
     {
@@ -150,7 +153,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's descendants.
      *
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Descendants
+     * @return Descendants
      */
     public function descendants()
     {
@@ -166,7 +169,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's descendants and itself.
      *
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Descendants
+     * @return Descendants
      */
     public function descendantsAndSelf()
     {
@@ -182,12 +185,12 @@ trait HasRecursiveRelationships
     /**
      * Instantiate a new Descendants relationship.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param \Illuminate\Database\Eloquent\Model $parent
+     * @param Builder $query
+     * @param Model $parent
      * @param string $foreignKey
      * @param string $localKey
      * @param bool $andSelf
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Descendants
+     * @return Descendants
      */
     protected function newDescendants(Builder $query, Model $parent, $foreignKey, $localKey, $andSelf)
     {
@@ -197,7 +200,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's parent.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function parent()
     {
@@ -207,7 +210,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's parent and itself.
      *
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Ancestors
+     * @return Ancestors
      */
     public function parentAndSelf()
     {
@@ -217,7 +220,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's siblings.
      *
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Siblings
+     * @return Siblings
      */
     public function siblings()
     {
@@ -233,7 +236,7 @@ trait HasRecursiveRelationships
     /**
      * Get the model's siblings and itself.
      *
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Siblings
+     * @return Siblings
      */
     public function siblingsAndSelf()
     {
@@ -249,12 +252,12 @@ trait HasRecursiveRelationships
     /**
      * Instantiate a new Siblings relationship.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param \Illuminate\Database\Eloquent\Model $parent
+     * @param Builder $query
+     * @param Model $parent
      * @param string $foreignKey
      * @param string $localKey
      * @param bool $andSelf
-     * @return \Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Siblings
+     * @return Siblings
      */
     protected function newSiblings(Builder $query, Model $parent, $foreignKey, $localKey, $andSelf)
     {
@@ -264,8 +267,8 @@ trait HasRecursiveRelationships
     /**
      * Add a recursive expression for the relationship's whole tree to the query.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeTree(Builder $query)
     {
@@ -279,8 +282,8 @@ trait HasRecursiveRelationships
     /**
      * Limit the query to models with children.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeHasChildren(Builder $query)
     {
@@ -294,8 +297,8 @@ trait HasRecursiveRelationships
     /**
      * Limit the query to models with a parent.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeHasParent(Builder $query)
     {
@@ -305,8 +308,8 @@ trait HasRecursiveRelationships
     /**
      * Limit the query to leaf models.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeIsLeaf(Builder $query)
     {
@@ -320,8 +323,8 @@ trait HasRecursiveRelationships
     /**
      * Limit the query to root models.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeIsRoot(Builder $query)
     {
@@ -331,10 +334,10 @@ trait HasRecursiveRelationships
     /**
      * Limit the query by depth.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Builder $query
      * @param mixed $operator
      * @param mixed $value
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeWhereDepth(Builder $query, $operator, $value = null)
     {
@@ -346,8 +349,8 @@ trait HasRecursiveRelationships
     /**
      * Order the query breadth-first.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeBreadthFirst(Builder $query)
     {
@@ -357,8 +360,8 @@ trait HasRecursiveRelationships
     /**
      * Order the query depth-first.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeDepthFirst(Builder $query)
     {
@@ -368,12 +371,12 @@ trait HasRecursiveRelationships
     /**
      * Add a recursive expression for the relationship to the query.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Builder $query
      * @param string $direction
      * @param callable $constraint
      * @param int $initialDepth
      * @param string|null $from
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeWithRelationshipExpression(Builder $query, $direction, callable $constraint, $initialDepth, $from = null)
     {
@@ -396,11 +399,11 @@ trait HasRecursiveRelationships
     /**
      * Get the initial query for a relationship expression.
      *
-     * @param \Staudenmeir\LaravelAdjacencyList\Query\Grammars\ExpressionGrammar|\Illuminate\Database\Grammar $grammar
+     * @param ExpressionGrammar|Grammar $grammar
      * @param callable $constraint
      * @param int $initialDepth
      * @param string $from
-     * @return \Illuminate\Database\Eloquent\Builder $query
+     * @return Builder $query
      */
     protected function getInitialQuery(ExpressionGrammar $grammar, callable $constraint, $initialDepth, $from)
     {
@@ -425,10 +428,10 @@ trait HasRecursiveRelationships
     /**
      * Get the recursive query for a relationship expression.
      *
-     * @param \Staudenmeir\LaravelAdjacencyList\Query\Grammars\ExpressionGrammar|\Illuminate\Database\Grammar $grammar
+     * @param ExpressionGrammar|Grammar $grammar
      * @param string $direction
      * @param string $from
-     * @return \Illuminate\Database\Eloquent\Builder $query
+     * @return Builder $query
      */
     protected function getRecursiveQuery(ExpressionGrammar $grammar, $direction, $from)
     {
@@ -468,8 +471,8 @@ trait HasRecursiveRelationships
     /**
      * Get the expression grammar.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Staudenmeir\LaravelAdjacencyList\Query\Grammars\ExpressionGrammar
+     * @param Builder $query
+     * @return ExpressionGrammar
      */
     protected function getExpressionGrammar(Builder $query)
     {
@@ -517,10 +520,10 @@ trait HasRecursiveRelationships
      * Create a new Eloquent query builder for the model.
      *
      * @param \Illuminate\Database\Query\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder|static
+     * @return Builder|static
      */
     public function newEloquentBuilder($query)
     {
-        return new \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder($query);
+        return new \Paxha\LaravelAdjacencyList\Eloquent\Builder($query);
     }
 }
