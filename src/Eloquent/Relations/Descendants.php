@@ -1,6 +1,6 @@
 <?php
 
-namespace Pahxa\LaravelAdjacencyList\Eloquent\Relations;
+namespace Paxha\LaravelAdjacencyList\Eloquent\Relations;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;

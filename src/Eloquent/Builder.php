@@ -1,6 +1,6 @@
 <?php
 
-namespace Pahxa\LaravelAdjacencyList\Eloquent;
+namespace Paxha\LaravelAdjacencyList\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder as Base;
 use Illuminate\Database\PostgresConnection;

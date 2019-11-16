@@ -1,20 +1,20 @@
 <?php
 
-namespace Pahxa\LaravelAdjacencyList\Eloquent;
+namespace Paxha\LaravelAdjacencyList\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use RuntimeException;
-use Pahxa\LaravelAdjacencyList\Eloquent\Relations\Ancestors;
-use Pahxa\LaravelAdjacencyList\Eloquent\Relations\Descendants;
-use Pahxa\LaravelAdjacencyList\Eloquent\Relations\Siblings;
-use Pahxa\LaravelAdjacencyList\Query\Grammars\ExpressionGrammar;
-use Pahxa\LaravelAdjacencyList\Query\Grammars\MySqlGrammar;
-use Pahxa\LaravelAdjacencyList\Query\Grammars\PostgresGrammar;
-use Pahxa\LaravelAdjacencyList\Query\Grammars\SQLiteGrammar;
-use Pahxa\LaravelAdjacencyList\Query\Grammars\SqlServerGrammar;
-use Pahxa\LaravelCte\Eloquent\QueriesExpressions;
+use Paxha\LaravelAdjacencyList\Eloquent\Relations\Ancestors;
+use Paxha\LaravelAdjacencyList\Eloquent\Relations\Descendants;
+use Paxha\LaravelAdjacencyList\Eloquent\Relations\Siblings;
+use Paxha\LaravelAdjacencyList\Query\Grammars\ExpressionGrammar;
+use Paxha\LaravelAdjacencyList\Query\Grammars\MySqlGrammar;
+use Paxha\LaravelAdjacencyList\Query\Grammars\PostgresGrammar;
+use Paxha\LaravelAdjacencyList\Query\Grammars\SQLiteGrammar;
+use Paxha\LaravelAdjacencyList\Query\Grammars\SqlServerGrammar;
+use Paxha\LaravelCte\Eloquent\QueriesExpressions;
 
 trait HasRecursiveRelationships
 {
