@@ -12,6 +12,12 @@
             "email": "e.hassanrazapasha@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/paxha/laravel-adjacency-list"
+        }
+    ],
     "require": {
         "php": "^7.2",
         "illuminate/database": "^6.0",
