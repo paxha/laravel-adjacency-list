@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Illuminate\Database\Capsule\Manager as DB;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\Relations\Descendants;
+use Paxha\LaravelAdjacencyList\Eloquent\Relations\Descendants;
 use Tests\Models\User;
 
 class DescendantsTest extends TestCase
